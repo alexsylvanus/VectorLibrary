@@ -336,6 +336,22 @@ string_t vStrI(vint_t vector) {
 	// Return string
 	return S;
 }
+string_t vStrF(vfloat_t vector) {
+	// Declare return string
+	string_t S = sInit("");
+	string_t sTemp = NULL;
+	// Check if vector contains data
+	if (vector->length > 0) {
+		// Print values separated by commas
+		int i = 0;
+		for (i = 0; i < vector->length - 1; i++) {
+			sTemp = strF(getF(vector, i));
+			S = sAdd_c(S, sAdd_c(sTemp, sInit(", ")));
+		}
+		S = sAdd_c(S, strF(getF(vector, i)));
+	}
+	return S;
+}
 
 // @:TODO
 /*
