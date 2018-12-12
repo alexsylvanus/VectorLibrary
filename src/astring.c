@@ -35,7 +35,7 @@ int dStrLength(double val) {
 	// Declare variables
 	char c[10]; // Unused, ptr needed for snprintf function
 	int n = snprintf(c, sizeof(c), "%f", val);
-	printf("%d chars needed\n");
+	printf("%d chars needed\n", n);
 	// Return size
 	return n;
 }
