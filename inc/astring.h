@@ -24,7 +24,8 @@ void sPrint(string_t s); // Print the string struct to the console
 // Initialization functions
 void sClear(string_t s);
 string_t sInit(const char* s); // Initialize string with constant character array
-string_t sCopy(string_t s); 
+string_t sCopy(string_t s);
+bool sEquals(string_t s, const char* literal);
 
 // Get functions
 char getC(string_t s, int index); // Get a character at a specific index

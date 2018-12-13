@@ -118,6 +118,10 @@ string_t sCopy(string_t s) {
 	}
 	return ret;
 }
+bool sEquals(string_t s, const char* literal) {
+	/* Compare the pointer of s to the literal string */
+	return strcmp(s->str, literal);
+}
 
 // Get functions
 char getC(string_t s, int index) {
