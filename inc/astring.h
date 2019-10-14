@@ -10,6 +10,9 @@
 #ifndef INC_ASTRING_H_
 #define INC_ASTRING_H_
 
+// Includes
+#include <stdbool.h>
+
 // Type Definitions
 typedef struct STR String_t;
 typedef String_t* string_t;

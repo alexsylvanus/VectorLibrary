@@ -24,35 +24,32 @@
 typedef struct VINT* vint_t;
 typedef struct VFLT* vfloat_t;
 typedef struct VDBL* vdouble_t;
-
-typedef struct { // String Vector
-	string_t* vstring;
-	size_t length;
-} vstring_t;
+typedef struct VSTRING* vstring_t;
 
 // Functions
 void pushi(vint_t vector, int value);
 void pushf(vfloat_t vector, float value);
 void pushd(vdouble_t vector, double value);
-void pushs(vstring_t* vector, string_t value);
+void pushs(vstring_t vector, string_t value);
+void pushString(vstring_t vector, const char* s);
 
 // */
 int popi(vint_t vector);
 float popf(vfloat_t vector);
 double popd(vdouble_t vector);
-string_t pops(vstring_t* vector);
+string_t pops(vstring_t vector);
 // */
 
 void cleari(vint_t vector);
 void clearf(vfloat_t vector);
 void cleard(vdouble_t vector);
-void clears(vstring_t* vector);
+void clears(vstring_t vector);
 
 // Get functions
 int getI(vint_t vector, int index);
 float getF(vfloat_t vector, int index);
 double getD(vdouble_t vector, int index);
-string_t getS(vstring_t* vector, int index);
+string_t getS(vstring_t vector, int index);
 
 // Vector Print functions
 void vPrintI(vint_t vector);
@@ -64,6 +61,8 @@ void vPrintS(vstring_t vector);
 vint_t vInitI(int* v, size_t n);
 vfloat_t vInitF(float* v, size_t n);
 vdouble_t vInitD(double* v, size_t n);
+vstring_t vInitS(char* v[], size_t n);
+vstring_t vInitS_Blank();
 
 // String functions
 string_t vStrI(vint_t vector);

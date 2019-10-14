@@ -64,7 +64,7 @@ void pushd(vdouble_t vector, double value) {
 		*(vector->vdouble + vector->length - 1) = value;
 	}
 }
-void pushs(vstring_t* vector, string_t value) {
+void pushs(vstring_t vector, string_t value) {
 	if (vector->length == 0) {
 		vector->vstring = (string_t*)calloc(1, sizeof(string_t));
 		*vector->vstring = sCopy(value);
@@ -79,6 +79,11 @@ void pushs(vstring_t* vector, string_t value) {
 		clear(value);
 		// free(value);
 	}
+}
+void pushString(vstring_t vector, const char* s) {
+	// Converts 's' to defined string_t type
+	string_t val = sInit(s);
+	pushs(vector, val); // This takes care of clearing the temporary string_t val
 }
 
 // Pop Functions
@@ -109,12 +114,12 @@ double popd(vdouble_t vector) {
 	}
 	return val;
 }
-string_t pops(vstring_t* vector) {
+string_t pops(vstring_t vector) {
 	string_t val = NULL;
 	if (vector->length > 0) {
 		vector->length--;
 		val = sCopy(*(vector->vstring + vector->length));
-		clear(*(vector->vstring + vector->length));
+		clear(*(vector->vstring + vector->length)); 
 		vector->vstring = (string_t*)realloc(vector->vstring, sizeof(string_t)*vector->length);
 	}
 	return val;
@@ -139,16 +144,17 @@ void cleard(vdouble_t vector) {
 	vector->vdouble = NULL;
 	free(vector);
 }
-void clears(vstring_t* vector) {
+void clears(vstring_t vector) {
 	// Deallocate the char pointers
 	int i = 0;
 	for(i = 0; i < vector->length; i++) {
-		clear(*(vector->vstring+i));
+		clear(*(vector->vstring + i));
 	}
 	// Deallocate the string pointer
 	vector->length = 0;
 	free(vector->vstring);
 	vector->vstring = NULL;
+	free(vector);
 }
 
 // Get Functions
@@ -186,7 +192,7 @@ double getD(vdouble_t vector, int index) {
 	// Return value
 	return ret;
 }
-string_t getS(vstring_t* vector, int index) {
+string_t getS(vstring_t vector, int index) {
 	/* Instead of returning the pointer at the index specified, 
 	this function will make a copy of the string stored at the index and return 
 	a pointer to that string object. This means that the pointer returned must be cleared
@@ -252,13 +258,13 @@ void vPrintD(vdouble_t vector) {
 }
 void vPrintS(vstring_t vector) {
 	// Check if vector contains data
-	if (vector.length > 0) {
+	if (vector->length > 0) {
 		// Print values seperated by commas
 		int i = 0;
-		for (i = 0; i < vector.length - 1; i++) {
-			printf("%s, ", (*(vector.vstring+i))->str);
+		for (i = 0; i < vector->length - 1; i++) {
+			printf("%s, ", (*(vector->vstring+i))->str);
 		}
-		printf("%s", (*(vector.vstring+i))->str); // Print last value not followed by comma
+		printf("%s", (*(vector->vstring+i))->str); // Print last value not followed by comma
 	}
 	else {
 		// Inform user that vector is empty
@@ -314,6 +320,31 @@ vdouble_t vInitD(double* v, size_t n) { // n is passed using the NELEM macro of 
     
     // Return val
     return val;
+}
+vstring_t vInitS(char* v[], size_t n) {
+	// Declare variables
+	Vstring_t temp = DEFAULT_VECTOR;
+	vstring_t val = (Vstring_t*)malloc(sizeof(Vstring_t));
+	*val = temp;
+
+	// Loop through array
+	int i = 0;
+	for (i = 0; i<n; i++) {
+		pushString(val, *(v+i));
+	}
+
+	// Return val
+	return val;
+}
+
+vstring_t vInitS_Blank() {
+	// Declare variables
+	Vstring_t temp = DEFAULT_VECTOR;
+	vstring_t val = (Vstring_t*)malloc(sizeof(Vstring_t));
+	*val = temp;
+
+	// Return val
+	return val;
 }
 
 // String functions

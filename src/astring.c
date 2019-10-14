@@ -68,12 +68,12 @@ char pop(string_t s) {
 }
 void clear(string_t s) {
 	// Check if the pointer has already been cleared
-	if (s != NULL) {
+	if (s->length != 0) {
 		s->length = 0;
 		free(s->str);
 		s->str = NULL;
 		free(s);
-		s = NULL;	
+		s = NULL;
 	}
 }
 void sPrint(string_t s) {

@@ -112,43 +112,35 @@ void vTestS() {
     // Print Name
     printf("\n ---- String Vector Test ----\n");
 
-    // Initialize vector
-	string_t S1 = sInit("Hello");
-	string_t S2 = sInit("Alex");
-	string_t S3 = sInit("Syl");
-	string_t S4 = sInit("va");
-	string_t S5 = sInit("nus");
-
+    // Initialize Vector
+    char* arr[] = {"Hello", "Alex", "Syl", "va", "nus", "I am a computer." };
+    vstring_t v = vInitS(arr, NELEM(arr));
     printf("Strings Initialized\n");
-    vstring_t v = {NULL, 0};
-    pushs(&v, S1);
-    pushs(&v, S2);
-    pushs(&v, S3);
-    pushs(&v, S4);
-	pushs(&v, S5);
-
+    
     // Test Print
     printf("Array = ");
     vPrintS(v);
     printf("\n");
 
     // Test the get function
-    string_t s = getS(&v, 2);
+    string_t s = getS(v, 2);
     printf("Third Element: %s\n", getStr(s));
     clear(s);
 
     // Test Pop function
-    S1 = pops(&v);
+    clear(pops(v)); // Pop without printing
+
+    string_t S1 = pops(v);
     printf("Last Element: ");
     sPrint(S1);
     printf("\n");
 
-    S2 = pops(&v);
+    string_t S2 = pops(v);
     printf("Last Element: ");
     sPrint(S2);
     printf("\n");
 
-    S3 = pops(&v);
+    string_t S3 = pops(v);
     printf("Array = ");
     vPrintS(v);
     printf("\n");
@@ -160,7 +152,7 @@ void vTestS() {
 
     //*/
     // Clear the array
-    clears(&v);
+    clears(v);
     printf("Vector Cleared\n ---- Test Finished ----\n");
 }
 
