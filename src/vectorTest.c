@@ -153,6 +153,10 @@ void vTestS() {
     //*/
     // Clear the array
     clears(v);
+
+    // Check if clearing blank array works
+    v = vInitS_Blank();
+    clears(v);
     printf("Vector Cleared\n ---- Test Finished ----\n");
 }
 
