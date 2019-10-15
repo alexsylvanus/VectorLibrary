@@ -66,16 +66,31 @@ char pop(string_t s) {
 	}
 	return val;
 }
-void clear(string_t s) {
+void clear(string_t* s) { // Takes address input so that vector can be set to NULL without return value
+	// Clear the vector
+	if (*s != NULL) {
+		(*s)->length = 0;
+		free((*s)->str);
+		(*s)->str = NULL;
+		free(*s);
+		*s = NULL;
+	}
+}
+void clear_private(string_t s) {
 	// Check if the pointer has already been cleared
-	if (s->length != 0) {
+	if (s != NULL) {
 		s->length = 0;
 		free(s->str);
 		s->str = NULL;
 		free(s);
-		s = NULL;
 	}
 }
+void setNull(string_t* s) {
+	if (*s != NULL) {
+		*s = NULL;
+	}
+}
+
 void sPrint(string_t s) {
 	printf(s->str);
 }
@@ -139,7 +154,21 @@ char* getStr(string_t s) {
 	return s->str;
 }
 size_t getLength(string_t s) {
-	return s->length;
+	// Declare variables
+	size_t len = 0;
+
+	// Check if vector has been cleared
+	len = (s == NULL) ? 0 : s->length; /*
+	if (s == NULL) {
+		len = 0;
+	}
+	else {
+		len = s->length;
+	}
+	*/
+
+	// Return the assigned length
+	return len;
 }
 
 // Manipulation Function
@@ -185,8 +214,8 @@ string_t sAdd_c(string_t s1, string_t s2) {
 	}
 
 	// Clear the strings passed to the function
-	clear(s1);
-	clear(s2);
+	clear(&s1);
+	clear(&s2);
 
 	// Convert character array to string object and return
 	return sInit(s);

@@ -64,26 +64,42 @@ void pushd(vdouble_t vector, double value) {
 		*(vector->vdouble + vector->length - 1) = value;
 	}
 }
-void pushs(vstring_t vector, string_t value) {
+void pushs(vstring_t vector, string_t value) { // This version does not clear the passed string
 	if (vector->length == 0) {
 		vector->vstring = (string_t*)calloc(1, sizeof(string_t));
 		*vector->vstring = sCopy(value);
-		clear(value);
-		// free(value);
+		// clear(&value);
 		vector->length = 1;
 	}
 	else {
 		vector->length++;
 		vector->vstring = (string_t*)realloc(vector->vstring, sizeof(string_t)*vector->length);
 		*(vector->vstring + vector->length - 1) = sCopy(value);
-		clear(value);
-		// free(value);
+		// clear(&value);
+	}
+}
+void pushs_c(vstring_t vector, string_t* addr) { // This version will clear the input string value
+	// Determine if vector contains any values or not
+	if (vector->length == 0) {
+		// Allocate memory for pointer to the vector
+		vector->vstring = (string_t*)calloc(1, sizeof(string_t));
+		*vector->vstring = sCopy(*addr);
+
+		// Clear the passed string parameter
+		clear(addr);
+		vector->length = 1;
+	}
+	else {
+		vector->length++;
+		vector->vstring = (string_t*)realloc(vector->vstring, sizeof(string_t)*vector->length);
+		*(vector->vstring + vector->length - 1) = sCopy(*addr);
+		clear(addr);
 	}
 }
 void pushString(vstring_t vector, const char* s) {
 	// Converts 's' to defined string_t type
 	string_t val = sInit(s);
-	pushs(vector, val); // This takes care of clearing the temporary string_t val
+	pushs_c(vector, &val); // This takes care of clearing the temporary string_t val
 }
 
 // Pop Functions
@@ -119,7 +135,7 @@ string_t pops(vstring_t vector) {
 	if (vector->length > 0) {
 		vector->length--;
 		val = sCopy(*(vector->vstring + vector->length));
-		clear(*(vector->vstring + vector->length)); 
+		clear(&(*(vector->vstring + vector->length))); 
 		vector->vstring = (string_t*)realloc(vector->vstring, sizeof(string_t)*vector->length);
 	}
 	return val;
@@ -148,7 +164,7 @@ void clears(vstring_t vector) {
 	// Deallocate the char pointers
 	int i = 0;
 	for(i = 0; i < vector->length; i++) {
-		clear(*(vector->vstring + i));
+		clear(&(*(vector->vstring + i)));
 	}
 	// Deallocate the string pointer
 	vector->length = 0;
@@ -208,6 +224,30 @@ string_t getS(vstring_t vector, int index) {
 	}
 	// Return value
 	return ret;
+}
+
+// Length functions
+size_t getLengthI(vint_t vector) {
+	// @:TODO
+	return 0;
+}
+size_t getLengthF(vfloat_t vector) {
+	// @:TODO
+	return 0;
+}
+size_t getLengthD(vdouble_t vector) {
+	// @:TODO
+	return 0;
+}
+size_t getLengthS(vstring_t vector) {
+	// Declare variables
+	size_t len = 0;
+
+	// Check if vector cleared
+	len = (vector==NULL) ? 0 : vector->length;
+
+	// Return the variable
+	return len;
 }
 
 // Vector Print Functions

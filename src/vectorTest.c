@@ -26,7 +26,7 @@ void vTestI() {
 
     string_t S = vStrI(v);
     printf("Array = %s\n", getStr(S));
-    clear(S);
+    clear(&S);
 
     // Test the get function
     printf("Third Element: %d\n", getI(v, 2));
@@ -36,7 +36,7 @@ void vTestI() {
 
     string_t s = strI(popi(v));
     printf("Last Element: %s\n", getStr(s));
-    clear(s);
+    clear(&s);
 
     printf("Array = ");
     vPrintI(v);
@@ -67,7 +67,7 @@ void vTestF() {
 
     string_t s = strF(popf(v));
     printf("Last Element: %s\n", getStr(s));
-    clear(s);
+    clear(&s);
 
     printf("Array = ");
     vPrintF(v);
@@ -98,7 +98,7 @@ void vTestD() {
 
     string_t s = strD(popd(v));
     printf("Last Elements: %s\n", getStr(s));
-    clear(s);
+    clear(&s);
 
     printf("Array = ");
     vPrintD(v);
@@ -125,10 +125,15 @@ void vTestS() {
     // Test the get function
     string_t s = getS(v, 2);
     printf("Third Element: %s\n", getStr(s));
-    clear(s);
+    printf("Length: %d\n", getLength(s));
+    clear(&s);
+    if (!s) {
+        printf("Length after Clear: %d\n", getLength(s));
+    }
 
     // Test Pop function
-    clear(pops(v)); // Pop without printing
+    s = pops(v);
+    clear(&s); // Pop without printing
 
     string_t S1 = pops(v);
     printf("Last Element: ");
@@ -148,7 +153,7 @@ void vTestS() {
     // Test string add function
     string_t S = sAdd_c(S3, sAdd_c(S2, S1));
     printf("Concatenated String of Popped strings: %s\n", getStr(S));
-    clear(S);
+    clear(&S);
 
     //*/
     // Clear the array

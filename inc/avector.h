@@ -31,6 +31,7 @@ void pushi(vint_t vector, int value);
 void pushf(vfloat_t vector, float value);
 void pushd(vdouble_t vector, double value);
 void pushs(vstring_t vector, string_t value);
+void pushs_c(vstring_t vector, string_t* addr);
 void pushString(vstring_t vector, const char* s);
 
 // */
@@ -50,6 +51,12 @@ int getI(vint_t vector, int index);
 float getF(vfloat_t vector, int index);
 double getD(vdouble_t vector, int index);
 string_t getS(vstring_t vector, int index);
+
+// Length functions
+size_t getLengthI(vint_t vector);
+size_t getLengthF(vfloat_t vector);
+size_t getLengthD(vdouble_t vector);
+size_t getLengthS(vstring_t vector);
 
 // Vector Print functions
 void vPrintI(vint_t vector);

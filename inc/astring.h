@@ -21,7 +21,8 @@ typedef String_t* string_t;
 // Vector-type Functions
 void append(string_t s, char value); // Add a char to the end, equivalent to push
 char pop(string_t s); // Get the last value and remove it from the string
-void clear(string_t s); // Clear the string and free the memory allocated
+void clear(string_t* s); // Clear the string and free the memory allocated
+void setNull(string_t* s);
 void sPrint(string_t s); // Print the string struct to the console
 
 // Initialization functions
