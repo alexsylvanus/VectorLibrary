@@ -44,5 +44,8 @@ string_t sAdd_c(string_t s1, string_t s2);
 string_t strI(int val); // Int to string_t conversion
 string_t strF(float val); // Float to string_t conversion
 string_t strD(double val); // Double to string_t conversion
+int iStr(string_t val);
+float fStr(string_t val);
+double dStr(string_t val);
 
 #endif /* INC_ASTRING_H_ */

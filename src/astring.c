@@ -135,7 +135,7 @@ string_t sCopy(string_t s) {
 }
 bool sEquals(string_t s, const char* literal) {
 	/* Compare the pointer of s to the literal string */
-	return strcmp(s->str, literal);
+	return !strcmp(s->str, literal);
 }
 
 // Get functions
@@ -266,4 +266,23 @@ string_t strD(double val) {
 	// Create a string object
 	string_t ret = sInit(s);
 	return ret;
+}
+
+int iStr(string_t val) {
+	// @:TODO
+	return 0;
+}
+float fStr(string_t val) {
+	// Declare variables
+	float ret = 0;
+
+	// Assign
+	ret = (float)atof(getStr(val));
+
+	// Return
+	return ret;
+}
+double dStr(string_t val) {
+	// @:TODO
+	return 0;
 }
