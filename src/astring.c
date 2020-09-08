@@ -10,8 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../inc/astring.h"
-#include "../inc/privateTypes.h"
+#include "astring.h"
+#include "privateTypes.h"
 
 // Functions
 /* ==== Private Functions ==== */ // Note: These do not work, something to do with the allocation of the char pointer

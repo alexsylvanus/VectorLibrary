@@ -7,7 +7,7 @@
 */
 
 // Includes
-#include "../inc/adate.h"
+#include "adate.h"
 
 
 // Global variables

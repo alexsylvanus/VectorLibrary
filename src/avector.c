@@ -9,8 +9,8 @@
 // Includes
 #include <stdio.h>
 #include <string.h>
-#include "../inc/avector.h"
-#include "../inc/privateTypes.h"
+#include "avector.h"
+#include "privateTypes.h"
 
 // Defines
 #define DEFAULT_VECTOR EMPTY

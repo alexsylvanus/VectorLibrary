@@ -7,7 +7,7 @@
 */
 
 // Includes
-#include "../inc/vectorTest.h"
+#include "vectorTest.h"
 #include <stdio.h>
 
 // Functions
