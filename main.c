@@ -11,8 +11,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include "inc/adate.h"
-#include "inc/vectorTest.h"
+#include "adate.h"
+#include "vectorTest.h"
 
 // Variable Type Definitions
 
