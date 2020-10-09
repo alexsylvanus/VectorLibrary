@@ -18,11 +18,11 @@
 #include "astring.h"
 
 // Functions
-void vTestI();
-void vTestF();
-void vTestD();
-void vTestS();
+extern void vTestI();
+extern void vTestF();
+extern void vTestD();
+extern void vTestS();
 
-void TestAll();
+extern void TestAll();
 
 #endif /* INC_VECTORTEST_H_ */

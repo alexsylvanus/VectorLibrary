@@ -5,13 +5,19 @@
 #import sys
 
 # Define the source files
-src_files = ['main.c', 'src/adate.c', 'src/astring.c', 'src/avector.c', 'src/vectorTest.c']
+src_dir = 'src'
+src_files = ['main.c'] + Glob('%s/*.c'%(src_dir))
 
 # Define the include directory
-inc_dir = ['./inc']
+inc_dir = ['#./inc']
 
 # Define the environment
 env = Environment(CPPPATH = inc_dir)
 
+# Define directory for build files
+SConscript(['src/SConscript'], exports='env', variant_dir='build', duplicate=0)
+
+
+print(env.Dump())
 # Compile the program
-env.Program('Test', src_files)
+# env.Program('Test', 'main.c', LIBS=['VectorLib'], LIBPATH='build')
