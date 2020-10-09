@@ -1,0 +1,15 @@
+# File: SConscript
+# Author: Alex Sylvanus
+
+# Define the source files
+src_files = Glob('*.c')
+
+# Define the include directory
+#inc_dir = ['#inc']
+
+# Define the environment
+#env = Environment(CPPPATH = inc_dir)
+Import('env')
+
+# Generate library
+env.SharedLibrary('VectorLib', src_files)

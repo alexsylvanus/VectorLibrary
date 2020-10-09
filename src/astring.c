@@ -175,7 +175,9 @@ size_t getLength(string_t s) {
 string_t sAdd(string_t s1, string_t s2) {
 	// Get size of new string
 	int n = getLength(s1) + getLength(s2);
-	char s[n];
+	//char s[n];
+	char* s = (char*)malloc(n*sizeof(char));
+
 	// Check if size makes sense
 	if (n > s1->length && n > s2->length) {
 		// Write strings to new character arrays
@@ -192,12 +194,16 @@ string_t sAdd(string_t s1, string_t s2) {
 	}
 
 	// Convert character array to string object and return
-	return sInit(s);
+	string_t ret = sInit(s);
+	free(s);
+	return ret;
 }
 string_t sAdd_c(string_t s1, string_t s2) {
 	// Get size of new string
 	int n = getLength(s1) + getLength(s2);
-	char s[n];
+	//char s[n];
+	char* s = (char*)malloc(n*sizeof(char));
+
 	// Check if size makes sense
 	if (n > s1->length && n > s2->length) {
 		// Write strings to new character arrays
@@ -218,7 +224,9 @@ string_t sAdd_c(string_t s1, string_t s2) {
 	clear(&s2);
 
 	// Convert character array to string object and return
-	return sInit(s);
+	string_t ret = sInit(s);
+	free(s);
+	return ret;
 }
 
 // Conversion functions
@@ -228,13 +236,15 @@ string_t strI(int val) {
 	size_t n = snprintf(c, sizeof(c), "%d", val);
 
 	// Allocate array with size of the float string
-	char s[n];
+	//char s[n];
+	char* s = (char*)malloc(n*sizeof(char));
 
 	// Write float to character array
 	sprintf(s, "%d", val);
 
 	// Create a string object
 	string_t ret = sInit(s);
+	free(s);
 	return ret;
 }
 string_t strF(float val) {
@@ -243,13 +253,15 @@ string_t strF(float val) {
 	size_t n = snprintf(c, sizeof(c), "%f", val);
 
 	// Allocate array with size of the float string
-	char s[n];
+	//char s[n];
+	char* s = (char*)malloc(n*sizeof(char));
 
 	// Write float to character array
 	sprintf(s, "%f", val);
 
 	// Create a string object
 	string_t ret = sInit(s);
+	free(s);
 	return ret;
 }
 string_t strD(double val) {
@@ -258,13 +270,15 @@ string_t strD(double val) {
 	size_t n = snprintf(c, sizeof(c), "%f", val);
 
 	// Allocate array with size of the float string
-	char s[n];
+	//char s[n];
+	char* s = (char*)malloc(n*sizeof(char));
 
 	// Write float to character array
 	sprintf(s, "%f", val);
 
 	// Create a string object
 	string_t ret = sInit(s);
+	free(s);
 	return ret;
 }
 
