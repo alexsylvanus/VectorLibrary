@@ -12,16 +12,8 @@
 
 // Includes
 #include <stdbool.h>
+#include "export.h"
 
-#ifdef _WIN32
-	#ifdef LIBRARY_EXPORTS
-		#define LIBRARY_API __declspec(dllexport)
-	#else
-		#define LIBRARY_API __declspec(dllimport)
-	#endif
-#else
-#define LIBRARY_API
-#endif
 // Type Definitions
 typedef struct STR String_t;
 LIBRARY_API typedef String_t* string_t;

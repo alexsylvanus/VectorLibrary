@@ -165,13 +165,13 @@ string_t vStrs(vstring_t vector);
 string_t str = sInit("");
 clear(&str);
 
-vint_t vector_int = vIniti({}, 0);
+vint_t vector_int = vIniti(NULL, 0);
 cleari(vector_int);
 
-vfloat_t vector_float = vInitf({}, 0);
+vfloat_t vector_float = vInitf(NULL, 0);
 clearf(vector_float);
 
-vdouble_t vector_double = vInitd({}, 0);
+vdouble_t vector_double = vInitd(NULL, 0);
 cleard(vector_double);
 
 vstring_t vector_string = vInitS_Blank();
