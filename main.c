@@ -13,6 +13,7 @@
 #include <string.h>
 #include "adate.h"
 #include "vectorTest.h"
+#include "export.h"
 
 // Variable Type Definitions
 

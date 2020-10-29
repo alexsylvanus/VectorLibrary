@@ -14,15 +14,16 @@
 #define NELEM(a) sizeof(a)/sizeof(*a)
 
 // Includes
+#include "export.h"
 #include "avector.h"
 #include "astring.h"
 
 // Functions
-extern void vTestI();
-extern void vTestF();
-extern void vTestD();
-extern void vTestS();
+LIBRARY_API extern void vTestI();
+LIBRARY_API extern void vTestF();
+LIBRARY_API extern void vTestD();
+LIBRARY_API extern void vTestS();
 
-extern void TestAll();
+LIBRARY_API extern void TestAll();
 
 #endif /* INC_VECTORTEST_H_ */
