@@ -1,0 +1,55 @@
+# File: wmakefile
+# Author: Alex Sylvanus
+# Description: Windows makefile. Call with nmake --file wmakefile
+
+# Assign variables
+# Define a compile command
+CC=cl
+
+# Define the library path
+LDIR=lib
+
+# Define the source files folder
+SRC=src
+
+# Define the objects folders
+ODIR_S=obj_static
+ODIR_D=obj_dynamic
+
+all: main.exe avector.lib libavector.dll $(ODIR_S) $(ODIR_D)
+
+dynamic: libavector.dll
+
+static: avector.lib
+
+dmain: dmain.obj libavector.dll
+	$(CC) dmain.obj libavector.lib /Fedmain.exe
+
+main.exe: main.obj avector.lib 
+	link main.obj avector.lib
+
+libavector.dll: $(ODIR_D)
+	$(CC) /Iinc src\*.c /Fo$(ODIR_D)\ /DLIBRARY_EXPORTS /link /DLL /OUT:libavector.dll
+
+
+# objects\avector.obj objects\astring.obj objects\adate.obj objects\vectorTest.obj
+avector.lib: $(ODIR_S) $(ODIR_S)\*.obj 
+	lib /OUT:avector.lib $(ODIR_S)\*.obj
+
+{src}.c{$(ODIR_S)}.obj:
+	$(CC) /c /Iinc $< /Fo$(ODIR_S)\ /DSTATIC_BUILD
+
+main.obj:
+	$(CC) /c /Iinc main.c /DSTATIC_BUILD
+
+dmain.obj:
+	$(CC) /c /Iinc main.c /Fodmain
+
+$(ODIR_S):
+	mkdir $(ODIR_S)
+
+$(ODIR_D):
+	mkdir $(ODIR_D)
+
+clean:
+	rm -rf *.exe *.exp *.lib *.obj *.dll $(ODIR_D) $(ODIR_S)
